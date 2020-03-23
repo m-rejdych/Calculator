@@ -23,70 +23,46 @@ let outputArray = [];
 
 
 oneBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 1;
-    outputArray.push(1);
-    }
+    useBtn(1);
 });
 twoBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 2;
-    outputArray.push(2);
-    }
+    useBtn(2);
 });
 threeBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 3;
-    outputArray.push(3);
-    }
+    useBtn(3);
 });
 fourBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 4;
-    outputArray.push(4);
-    }
+    useBtn(4);
 });
 fiveBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 5;
-    outputArray.push(5);
-    }
+    useBtn(5);
 });
 sixBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 6;
-    outputArray.push(6);
-    }
+    useBtn(6);
 });
 sevenBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 7;
-    outputArray.push(7);
-    }
+    useBtn(7);
 });
 eightBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 8;
-    outputArray.push(8);
-    }
+    useBtn(8);
 });
 nineBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 9;
-    outputArray.push(9);
-    }
+    useBtn(9);
 });
 zeroBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += 0;
-    outputArray.push(0);
-    }
+    useBtn(0);
 });
 dotBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += `.`;
-    outputArray.push(`.`);
+    useBtn(`.`);
     deleteUnnecessaryOperators(`.`);
+    for (let i = outputArray.length - 2; i >= 0; i--) {
+        if (typeof outputArray[i] == `string`) {
+            if (outputArray[i] == `.`) {
+                outputArray.pop();
+                textOutput.textContent = textOutput.textContent.slice(0, textOutput.textContent.length - 1);
+            }
+            break;
+        }
     }
 });
 
@@ -102,34 +78,96 @@ acBtn.addEventListener(`click`, () => {
 
 
 divideBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += `/`
-    outputArray.push(`/`);
+    useBtn(`/`);
     deleteUnnecessaryOperators(`/`);
     }
-});
+);
 multiplyBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += `*`
-    outputArray.push(`*`);
+    useBtn(`*`);
     deleteUnnecessaryOperators(`*`);
     }
-});
+);
 subtractBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += `-`
-    outputArray.push(`-`);
+    useBtn(`-`);
     deleteUnnecessaryOperators(`-`);
     }
-});
+);
 addBtn.addEventListener(`click`, () => {
-    if (outputArray.length == 15) {} else {
-    textOutput.textContent += `+`
-    outputArray.push(`+`);
+    useBtn(`+`);
     deleteUnnecessaryOperators(`+`);
     }
-});
+);
 equalsBtn.addEventListener(`click`, operation);
+
+
+document.addEventListener(`keydown`, (event) => {
+    if (event.key == 1) {
+        useBtn(1);
+    }
+    if (event.key == 2) {
+        useBtn(2);
+    }
+    if (event.key == 3) {
+        useBtn(3);
+    }
+    if (event.key == 4) {
+        useBtn(4);
+    }
+    if (event.key == 5) {
+        useBtn(5);
+    }
+    if (event.key == 6) {
+        useBtn(6);
+    }
+    if (event.key == 7) {
+        useBtn(7);
+    }
+    if (event.key == 8) {
+        useBtn(8);
+    }
+    if (event.key == 9) {
+        useBtn(9);
+    }
+    if (event.keyCode == 48) {
+        useBtn(0);
+    }
+    if (event.key == `.`) {
+        useBtn(`.`);
+        deleteUnnecessaryOperators(`.`);
+        for (let i = outputArray.length - 2; i >= 0; i--) {
+            if (typeof outputArray[i] == `string`) {
+                if (outputArray[i] == `.`) {
+                    outputArray.pop();
+                    textOutput.textContent = textOutput.textContent.slice(0, textOutput.textContent.length - 1);
+                }
+                break;
+            }
+        }
+    }
+    if (event.keyCode == 8) {
+        outputArray.pop();
+        textOutput.textContent = textOutput.textContent.slice(0, textOutput.textContent.length - 1);
+    }
+    if (event.key == `/`) {
+        useBtn(`/`);
+        deleteUnnecessaryOperators(`/`);
+    }
+    if (event.key == `*`) {
+        useBtn(`*`);
+        deleteUnnecessaryOperators(`*`);
+    }
+    if (event.key == `-`) {
+        useBtn(`-`);
+        deleteUnnecessaryOperators(`-`);
+    }
+    if (event.key == `+`) {
+        useBtn(`+`);
+        deleteUnnecessaryOperators(`+`);
+    }
+    if (event.keyCode == 13) {
+        operation();
+    }
+})
 
 
 function operation () {
@@ -196,6 +234,14 @@ function operation () {
                 i = 0;
             }
         }
+    }
+
+
+    function useBtn(btn) {
+        if (outputArray.length == 15) {} else {
+            textOutput.textContent += btn;
+            outputArray.push(btn);
+            }
     }
 
 
